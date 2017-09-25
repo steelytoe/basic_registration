@@ -1,0 +1,189 @@
+<section id="additional">		
+	<div class="row" ng-show="cancelPayment">      	
+		<div class="col-md-12">
+			<div class="panel panel-default m-t" ng-show="form.payType !== undefined">
+				<div class="panel-heading">
+					<h3 class="panel-title">Informasi Cara Pembayaran</h3>
+				</div>
+				<div class="panel-body">
+					<h3>Anda dapat sewaktu - waktu mengakses <a class="white" href="{{parentUrl}}/#/invoice/{{data.transaction.refId}}">{{parentUrl}}/#/invoice/{{data.transaction.refId}}</a> untuk melakukan pembayaran. Kami juga telah mengirimkan informasi ini ke email anda</h3>
+					<p>Bayar belakangan memiliki konsekuensi dimana anda tidak dapat melakukan pembayaran lagi setelah kuota penuh. Silakan mengikuti petunjuk yang kami kirimkan melalui email setelah anda ingin melakukan pembayaran</p>
+					<p>Anda dapat sewaktu - waktu mengganti metode pembayaran pada tautan tersebut diatas</p>
+					<p>Terima kasih telah melakukan pendaftaran</p>
+				</div>
+				<div class="btn-group pull-right m-t">
+					<p>
+						<button type="button" ng-click="cancelPayment = false" class="btn btn-lg btn-success">Kembali Ke Pembayaran</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="!cancelPayment">      	
+		<div class="col-md-12">
+			<div ng-show="!error">
+				<!--pre>{{data}}</pre-->
+				<h2 ng-show="data.veritrans.rhfvTransactionStatus != 'deny'">Pendaftaran Anda Berhasil</h2>
+				<div ng-show="data.veritrans.rhfvTransactionStatus == 'deny'">
+					<h2>Transaksi Anda Ditolak</h2>
+					<p>Silakan pilih metode pembayaran yang lain</p>
+				</div>
+				<div class="bg-light lter b-b wrapper-md hidden-print">
+					<a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
+					<h1 class="m-n font-thin h3">Ringkasan Pendaftaran</h1>
+				</div>
+				<div class="wrapper-md">
+					<div>
+						<div class="row">
+							<div class="col-xs-6">
+								<p>{{eventTitle}}</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<p class="h4">Nomor Pendaftaran {{data.transaction.refId}}</p>
+								<h5>{{date(data.registration_date) | date:'medium'}}</h5>           
+							</div>
+						</div>
+						<div class="well m-t bg-light lt">
+							<div class="row">
+								<div class="col-xs-12">
+									<strong>Pendaftar:</strong>
+									<h4>{{data.participants[0].evpaName}}</h4>
+								</div>
+							</div>
+						</div>
+						<p class="m-t m-b">Tanggal Pemesanan: <strong>{{date(data.registration_date) | date:'medium'}}</strong><br>
+							Nomor Pendaftaran: <strong>{{data.transaction.refId}}</strong><br>
+							<i ng-if="data.payment_type != '0'">Metode Pembayaran: 
+								<span ng-if="data.payment_type == '1'" class="label bg-success">Transfer Antar Bank</span>
+								<span ng-if="data.payment_type == '2'" class="label bg-success">Kartu Kredit</span>
+								<span ng-if="data.payment_type == '3'" class="label bg-success">Virtual Account / Mandiri Clickpay</span>
+							</i>
+						</p>
+						<div class="line"></div>
+						<table class="table table-striped bg-white b-a">
+							<thead>
+								<tr>
+									<th>PESERTA</th>
+									<th>KATEGORI</th>
+									<th style="width: 130px">TOTAL</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="participant in data.participants">
+									<td class="text-left">{{participant.evpaName}}</td>
+									<td>{{participant.evncDesc}}</td>
+									<td class="text-right">{{participant.evncPrice|currency:'Rp. ':0}}</td>
+								</tr>
+								<tr>
+									<td colspan="2" class="text-right"><strong>Subtotal</strong></td>
+									<td class="text-right">{{data.transaction.amount|currency:'Rp. ':0}}</td>
+								</tr>
+								<tr ng-if="data.transaction.discount_amount">
+									<td colspan="2" class="text-right no-border"><strong>Diskon</strong></td>
+									<td class="text-right">{{data.transaction.discount_amount|currency:'Rp. ':0}}</td>
+								</tr>
+								<tr ng-if="form.payType == '2'">
+									<td colspan="2" class="text-right no-border"><strong>Biaya Transaksi</strong></td>
+									<td class="text-right">{{data.transaction.fee|currency:'Rp. ':0}}</td>
+								</tr>
+								<tr ng-if="form.payType == '3'">
+									<td colspan="2" class="text-right no-border"><strong>Biaya Transaksi</strong></td>
+									<td class="text-right">{{data.transaction.fee|currency:'Rp. ':0}}</td>
+								</tr>
+								<tr ng-if="form.payType == '1'&&data.transaction.unique_amount != '0'">
+									<td colspan="2" class="text-right no-border"><strong>Kode Unik</strong></td>
+									<td class="text-right">{{data.transaction.unique_amount|currency:'Rp. ':0}}</td>
+								</tr>
+								<tr ng-if="form.payType != '0'">
+									<td colspan="2" class="text-right no-border"><strong>Total</strong></td>
+									<td class="text-right"><strong>{{data.transaction.total_amount|currency:'Rp. ':0}}</strong></td>
+								</tr>
+							</tbody>
+						</table>              
+						<div class="row">
+							<div class="col-md-4">
+								<label>Punya Kupon?</label>
+								<p>{{couponMessage}}</p>
+								<div class="input-group">
+									<input type="text" class="form-control" ng-disabled="data.transaction.discount_amount" placeholder="Kode Kupon" ng-model="couponCode">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" ng-disabled="data.transaction.discount_amount" ng-click="useCoupon()">Gunakan!</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<hr/>
+					</div>
+				</div>
+				<div ng-show="data.transaction.status == 'Telah Dikonfirmasi'">
+					<h1>{{data.transaction.status}}</h1>
+				</div>
+				<div ng-if="data" ng-hide="paymentDone||disablePaymentOption">
+					<p>* Silahkan memeriksa apakah data yang anda masukkan sudah benar</p>
+					<div ng-show="data.transaction.status != 'Telah Dikonfirmasi'">
+						<label for="payType">Silakan Pilih Metode Pembayaran:</label>
+						<div class="clearfix"></div>
+						<div class="btn-group">
+							<!--label class="btn btn-primary btn-md" ng-model="form.payType" uib-btn-radio="0">Bayar Belakangan</label-->
+							<label class="btn btn-primary btn-md" ng-if="!disableTransfer" ng-model="form.payType" uib-btn-radio="'1'">Transfer Bank</label>
+							<label class="btn btn-primary btn-md" ng-model="form.payType" uib-btn-radio="'2'">Kartu Kredit</label>
+							<label class="btn btn-primary btn-md" ng-model="form.payType" uib-btn-radio="'3'">Virtual Account / Mandiri Clickpay</label>
+						</div>
+						<div class="clearfix"></div>
+						<div id="paymentInfo" class="panel panel-default m-t" ng-hide="hidePaymentInfo" ng-if="form.payType == '1'||form.payType == '2'||form.payType == '3'">
+							<div class="panel-heading">
+								<h3 class="panel-title">Informasi Pembayaran</h3>
+							</div>
+							<div class="panel-body" ng-if="!noFee">
+								<p ng-if="form.payType == '0'">Bayar belakangan memiliki konsekuensi dimana anda tidak dapat melakukan pembayaran lagi setelah kuota penuh. Silakan mengikuti petunjuk yang kami kirimkan melalui email setelah anda ingin melakukan pembayaran</p>
+								<p ng-if="form.payType == '1'">Kode unik akan di tambahkan pada akhir transaksi. Silakan melakukan transfer sesuai dengan nominal yang akan di berikan pada akhir transaksi, konfirmasi memakan waktu 1x24jam sejak transfer di lakukan. Nominal yang tidak sesuai dapat menyebabkan konfirmasi tertunda. Bukti transfer tidak perlu di kirimkan apabila transfer di lakukan sesuai dengan nominal yang di berikan</p>
+								<p ng-if="form.payType == '3'">Transfer virtual account memiliki waktu konfirmasi sesaat setelah anda melakukan transfer, anda memiliki waktu 24 jam untuk melakukan transfer. Kuota akan di kunci selama 24jam untuk anda melakukan pembayaran. Pilihan metoda pembayaran ini di kenakan biaya administrasi sebesar Rp. 7.500 (Tujuh Ribu Lima Ratus Rupiah)</p>
+								<p ng-if="form.payType == '2'">Pembayaran dengan menggunakan kartu kredit akan di konfirmasi sesaat setelah anda melakukan pembayaran. Pilihan metoda pembayaran ini di kenakan biaya pemrosesan kartu kredit sebesar 5% (Lima Persen) dari total nilai transaksi. Atau minimum Rp. 7.500 (Tujuh Ribu Lima Ratus Rupiah)</p>
+							</div>
+							<div class="panel-body" ng-if="noFee">
+								<p ng-if="form.payType == '0'">Bayar belakangan memiliki konsekuensi dimana anda tidak dapat melakukan pembayaran lagi setelah kuota penuh. Silakan mengikuti petunjuk yang kami kirimkan melalui email setelah anda ingin melakukan pembayaran</p>
+								<p ng-if="form.payType == '1'">Kode unik akan di tambahkan pada akhir transaksi. Silakan melakukan transfer sesuai dengan nominal yang akan di berikan pada akhir transaksi, konfirmasi memakan waktu 1x24jam sejak transfer di lakukan. Nominal yang tidak sesuai dapat menyebabkan konfirmasi tertunda. Bukti transfer tidak perlu di kirimkan apabila transfer di lakukan sesuai dengan nominal yang di berikan</p>
+								<p ng-if="form.payType == '3'">Transfer virtual account memiliki waktu konfirmasi sesaat setelah anda melakukan transfer, anda memiliki waktu 24 jam untuk melakukan transfer. Kuota akan di kunci selama 24jam untuk anda melakukan pembayaran.</p>
+								<p ng-if="form.payType == '2'">Pembayaran dengan menggunakan kartu kredit akan di konfirmasi sesaat setelah anda melakukan pembayaran.</p>
+							</div>
+						</div>
+						<div class="btn-group pull-right m-t">
+							<p>
+								<!--button ng-click="cancelPayment = true" type="button" class="btn btn-lg btn-warning">Bayar Belakangan</button-->
+								<button ng-disabled="form.payType == '0'||sending" type="button" ng-click="doPayment()" class="btn btn-lg btn-success">Setuju Pembayaran</button>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div ng-show="disablePaymentOption">
+					<p><h4>Anda dapat melakukan pembayaran setelah tanggal <strong>16 Mei 2016</strong> dengan metode pembayaran yang Anda pilih.</h4></p>
+					<p>Kami akan mengirimkan petunjuk pembayaran setelah tanggal <strong>16 Mei 2016</strong></p>
+					<div class="btn-group pull-right m-t">
+						<p>
+							<button type="button" ng-click="backToMain()" class="btn btn-lg btn-success">Kembali Ke Halaman Utama</button>
+						</p>
+					</div>
+				</div>
+				<div ng-show="paymentDone">
+					<div class="panel panel-default m-t" ng-show="form.payType !== undefined">
+						<div class="panel-heading">
+							<h3 class="panel-title">Metode pembayaran berhasil di pilih</h3>
+						</div>
+						<div class="panel-body">
+							<h3>Kode pembayaran anda adalah {{data.transaction.refId}}, silakan catat kode pendaftaran anda sebagai referensi.</h3>
+							<p>Silakan melakukan pembayaran ke BCA 0023888090 A/N INOVASI TEKNOLOGI sejumlah {{data.transaction.total_amount | currency : 'Rp. ' : 0}}, batas waktu pembayaran adalah setelah kuota habis ataupun di tutupnya masa pendaftaran. Pendaftaran anda akan batal secara otomatis apabila kuota telah terpenuhi.</p>
+							<h2 ng-if="data.transaction.total_amount">Jumlah yang harus di bayarkan : {{data.transaction.total_amount | currency : 'Rp. ' : 0}}</h2>
+							<h3>Rekening Tujuan BCA 0023888090 A/N INOVASI TEKNOLOGI</h3>
+							<p>Silakan melakukan transfer sesuai dengan nominal yang diminta, konfirmasi memakan waktu 1x24jam sejak transfer di lakukan. Nominal yang tidak sesuai dapat menyebabkan konfirmasi tertunda. Bukti transfer tidak perlu di kirimkan apabila transfer di lakukan sesuai dengan nominal yang di berikan</p>
+							<h3>Terima Kasih</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center" ng-if="error">
+				<h1>{{errorMessage}}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</section>

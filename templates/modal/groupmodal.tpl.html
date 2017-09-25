@@ -1,0 +1,13 @@
+<div class="modal-header">
+	<h3 class="modal-title">Konfirmasi pendaftaran Relay</h3>
+</div>
+<div class="modal-body">
+	<p ng-if="categoryIndex.length == 1">Relay berisi dari dua orang yang akan bergantian menyelesaikan rute yang telah di sediakan. Terima Kasih.</p>
+	<p ng-if="categoryIndex.length > 1&&categoryIndex.length <= 3">Group berisi dari 4orang dan minimal beranggotakan 1 wanita. Mohon mengisikan keempat nama peserta pada daftar peserta. Pendaftaran group juga akan di kenakan biaya pendaftaran group di samping dari biaya pendaftaran perorangan. Dan saat ini anda memiliki {{categoryIndex.length}} peserta, apakan anda ingin merubah kategori dari peserta yang ada dan menambahkan {{4-categoryIndex.length}} orang lagi?</p>
+	<p ng-if="categoryIndex.length == 4">Group berisi dari 4orang dan minimal beranggotakan 1 wanita. Mohon mengisikan keempat nama peserta pada daftar peserta. Pendaftaran group juga akan di kenakan biaya pendaftaran group di samping dari biaya pendaftaran perorangan. Dan saat ini anda memiliki {{categoryIndex.length}} peserta, apakan anda ingin merubah kategori dari semua peserta yang ada?</p>
+	<p ng-if="categoryIndex.length > 4">Group maksimal berisikan 4 orang, silakan kurangi peserta anda</p>
+</div>
+<div class="modal-footer">
+	<button ng-if="categoryIndex.length <= 4" class="btn btn-primary" type="button" ng-click="ok()">Lanjutkan</button>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Batalkan</button>
+</div>

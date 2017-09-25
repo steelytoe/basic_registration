@@ -1,0 +1,4 @@
+<!--img style="width: 10%;" ng-repeat="gallery in galleries[0].files" ng-src="{{gallery.filePreview}}" src-->
+<div lazyImgContainer>
+	<img style="width: 25%; height: 120px;" ng-repeat="(key, gallery) in galleries[0].files" lazy-img="http://dummyimage.com/4000x2000/000/fff/{{key}}" src>
+</div>

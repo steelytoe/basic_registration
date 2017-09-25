@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h2>Dear {{trnsEvpa.evpaName}} peserta Superball Run 2015.</h2>
+	<p>Superball Run Sudah dekat, pengambilan racepack akan di adakan di</p>
+	<p>FX Sudirman Lt. 5<br>Jl. Jenderal Sudirman, Pintu Satu Senayan, Jl.<br>Jenderal Sudirman, Jakarta Pusat</p>
+	<p>Pengambilan di layani mulai tanggal 10 - 12 Desember 2015 Pukul 12:00 Hingga 20:00</p>
+	<p>Pengambilan pada saat diselenggarakannya acara lari tidak di layani</p>
+	<h2>Berikut rincian pendaftaran anda : </h2>
+	<table>
+		<tr>
+			<th>Nama Peserta</th>
+			<th>Nomor BIB</th>
+		</tr>
+		{% for evpr in evprEvpaId %}
+		<tr>
+			<td>{{evpr.evpaName}}</td>
+			<td>{{evpr.evpaBIBNo}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<h3>Sebutkan kode {{trnsRefId}} untuk melakukan pengambilan</h3>
+	<p>Pengambilan racepack dapat di wakilkan dengan menunjukkan KTP anda</p>
+	<img src="http://superball.race.id/axa_sbr.jpg" alt="Brosur Superball">
+	<h3>Rute Superball Run</h3>
+	<img src="http://superball.race.id/Rute-3-miles.jpg" alt="Rute Superball 3 Miles">
+	<img src="http://superball.race.id/Rute-8-miles.jpg" alt="Rute Superball 8 Miles">
+	<br>
+	<img src="http://superball.race.id/axa_term.jpg" alt="Brosur Superball">
+	<p>Salam Hangat</p>
+	<p>Superball Team</p>
+</body>
+</html>

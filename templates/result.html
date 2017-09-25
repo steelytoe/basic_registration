@@ -1,0 +1,1645 @@
+<section id="additional" class="m-t">	
+	<div class="container">
+		<div class="row" ng-if="params.event != '4'&&params.event != '3'">
+			<div class="col-md-4">
+				<div class="input-group">
+					<input type="text" class="form-control" ng-disabled="data.transaction.discount_amount" placeholder="Cari Peserta" ng-model="searchStr" ng-change="searchParticipant(searchStr)">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" ng-disabled="data.transaction.discount_amount" ng-click="searchParticipant(searchStr)">Cari</button>
+					</span>
+				</div>
+				<p>{{couponMessage}}</p>
+			</div>
+		</div>
+		<div class="row" style="margin: 22px 0;">
+			<div class="col-md-4">
+				<div class="btn-group">
+					<label class="btn btn-success" ng-model="genRadioModel" uib-btn-radio="" uncheckable>Semua</label>
+					<label class="btn btn-success" ng-model="genRadioModel" uib-btn-radio="'Male'" uncheckable>Laki</label>
+					<label class="btn btn-success" ng-model="genRadioModel" uib-btn-radio="'Female'" uncheckable>Perempuan</label>
+				</div>
+			</div>
+			<div class="col-md-8">
+                <div class="btn-group" ng-show="params.event == '18'">
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="" uncheckable>Semua</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'10K'" uncheckable>10K</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'21K'" uncheckable>21K</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'42K'" uncheckable>42K</label>
+                </div>
+                <div class="btn-group" ng-show="params.event == '16'">
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="" uncheckable>Semua</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'5K'" uncheckable>5K</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'10K'" uncheckable>10K</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'25K'" uncheckable>25K</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'50K'" uncheckable>50K</label>
+                </div>
+                <div class="btn-group" ng-show="params.event == '5'">
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="" uncheckable>Semua</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'25K'" uncheckable>Tambora Ultra 25K</label>
+                    <label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'50K'" uncheckable>tambora Ultra 50K</label>
+                </div>
+				<div class="btn-group" ng-show="params.event == '4'">
+					<label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'100K'" uncheckable>Lintas Sumbawa 100K</label>
+					<label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'320K'" uncheckable>Lintas Sumbawa 320K</label>
+				</div>
+				<div class="btn-group" ng-show="params.event == '3'">
+					<label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'11K'" uncheckable>11K</label>
+					<label class="btn btn-success" ng-model="catRadioModel" uib-btn-radio="'18K'" uncheckable>18K</label>
+				</div>
+			</div>
+			<!--div class="col-md-4">
+				<div class="btn-group">
+					<label class="btn btn-success" ng-model="intRadioModel" uib-btn-radio="" uncheckable>Semua</label>
+					<label class="btn btn-success" ng-model="intRadioModel" uib-btn-radio="'Kompas-Gramedia'" uncheckable>Internal</label>
+					<label class="btn btn-success" ng-model="intRadioModel" uib-btn-radio="'General'" uncheckable>Umum</label>
+				</div>
+			</div-->
+		</div>
+		<div class="row">      	
+			<div class="col-md-12" ng-if="params.event == '3'&&catRadioModel == '18K'">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Daftar Peserta
+					</div>
+					<div class="table-responsive">
+<table class="table table-striped b-t b-light">
+    <thead>
+        <tr class="tableizer-firstrow">
+            <th>Rank</th>
+            <th>BIB</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>CP2</th>
+            <th>Duration</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>9033</td>
+            <td>UDIN AKBAR</td>
+            <td>Pria</td>
+            <td>1 hours 30 minutes</td>
+            <td>2 hours 17 minutes 52 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>9039</td>
+            <td>EDI HERIANTO HARAHAP</td>
+            <td>Pria</td>
+            <td>1 hours 30 minutes</td>
+            <td>2 hours 20 minutes 51 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>9042</td>
+            <td>LOURENZHO ADHETYA SINAGA</td>
+            <td>Pria</td>
+            <td>1 hours 44 minutes</td>
+            <td>2 hours 53 minutes 8 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>9002</td>
+            <td>ROY M WIJAYA</td>
+            <td>Pria</td>
+            <td>1 hours 52 minutes</td>
+            <td>2 hours 53 minutes 20 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>9017</td>
+            <td>MULIADI</td>
+            <td>Pria</td>
+            <td>1 hours 47 minutes</td>
+            <td>3 hours 1 minutes 42 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>9023</td>
+            <td>WILLIAM</td>
+            <td>Pria</td>
+            <td>1 hours 55 minutes</td>
+            <td>3 hours 3 minutes 18 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>9041</td>
+            <td>PRETTY SIHITE</td>
+            <td>Wanita</td>
+            <td>2 hours 0 minutes</td>
+            <td>3 hours 4 minutes 42 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>9035</td>
+            <td>NGARJIANTO</td>
+            <td>Pria</td>
+            <td>1 hours 56 minutes</td>
+            <td>3 hours 5 minutes 10 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>9040</td>
+            <td>INA LYDIA UTARI DAMANIK</td>
+            <td>Wanita</td>
+            <td>2 hours 0 minutes</td>
+            <td>3 hours 5 minutes 18 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>9011</td>
+            <td>HARUN</td>
+            <td>Pria</td>
+            <td>2 hours 0 minutes</td>
+            <td>3 hours 9 minutes 41 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>9001</td>
+            <td>DEDDI FILO GINTING</td>
+            <td>Pria</td>
+            <td>2 hours 4 minutes</td>
+            <td>3 hours 16 minutes 19 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>9019</td>
+            <td>HENDRY FU</td>
+            <td>Pria</td>
+            <td>2 hours 3 minutes</td>
+            <td>3 hours 17 minutes 8 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>9043</td>
+            <td>EVI DEARNY</td>
+            <td>Wanita</td>
+            <td>2 hours 15 minutes</td>
+            <td>3 hours 18 minutes 26 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>9018</td>
+            <td>IKDIANA</td>
+            <td>Wanita</td>
+            <td>2 hours 9 minutes</td>
+            <td>3 hours 21 minutes 38 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>9016</td>
+            <td>JOY ARIANTO S</td>
+            <td>Pria</td>
+            <td>2 hours 4 minutes</td>
+            <td>3 hours 25 minutes 42 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>9044</td>
+            <td>MUHAMMAD AZIZI</td>
+            <td>Pria</td>
+            <td>2 hours 8 minutes</td>
+            <td>3 hours 29 minutes 34 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>9034</td>
+            <td>ERWIN HASIM</td>
+            <td>Pria</td>
+            <td>2 hours 11 minutes</td>
+            <td>3 hours 32 minutes 9 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>9008</td>
+            <td>SALMAN</td>
+            <td>Pria</td>
+            <td>2 hours 8 minutes</td>
+            <td>3 hours 32 minutes 11 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>9027</td>
+            <td>BUDI SUDI BROTO</td>
+            <td>Pria</td>
+            <td>2 hours 12 minutes</td>
+            <td>3 hours 32 minutes 59 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>9036</td>
+            <td>SULUH AULIA HARAHAP</td>
+            <td>Pria</td>
+            <td>2 hours 14 minutes</td>
+            <td>3 hours 45 minutes 26 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>9006</td>
+            <td>JIMMY DRAGO</td>
+            <td>Pria</td>
+            <td>2 hours 42 minutes</td>
+            <td>4 hours 53 minutes 43 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>9037</td>
+            <td>SUDY</td>
+            <td>Pria</td>
+            <td>2 hours 23 minutes</td>
+            <td>4 hours 58 minutes 53 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9014</td>
+            <td>POH KWANG</td>
+            <td>Pria</td>
+            <td>2 hours 42 minutes</td>
+            <td>5 hours 0 minutes 19 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9010</td>
+            <td>TANDIONO</td>
+            <td>Pria</td>
+            <td>2 hours 51 minutes</td>
+            <td>5 hours 1 minutes 15 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9004</td>
+            <td>LIANTO</td>
+            <td>Pria</td>
+            <td>2 hours 47 minutes</td>
+            <td>5 hours 16 minutes 4 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9024</td>
+            <td>YESSICA NOVIA</td>
+            <td>Wanita</td>
+            <td>2 hours 50 minutes</td>
+            <td>5 hours 23 minutes 50 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9025</td>
+            <td>POLIM ASALI SUJANA</td>
+            <td>Pria</td>
+            <td>2 hours 50 minutes</td>
+            <td>5 hours 23 minutes 51 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9009</td>
+            <td>IRWAN</td>
+            <td>Pria</td>
+            <td>3 hours 43 minutes</td>
+            <td>6 hours 7 minutes 3 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9015</td>
+            <td>LIONARDY</td>
+            <td>Pria</td>
+            <td>3 hours 44 minutes</td>
+            <td>6 hours 9 minutes 56 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9022</td>
+            <td>HARYATI LIM</td>
+            <td>Wanita</td>
+            <td>3 hours 15 minutes</td>
+            <td>7 hours 1 minutes 56 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9028</td>
+            <td>GONARICA LIE JAYA</td>
+            <td>Wanita</td>
+            <td>4 hours 0 minutes</td>
+            <td>7 hours 23 minutes 0 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9029</td>
+            <td>SASMITO YUDHA HUSADA</td>
+            <td>Pria</td>
+            <td>3 hours 49 minutes</td>
+            <td>7 hours 23 minutes 0 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9046</td>
+            <td>DARWIS TANIWAN</td>
+            <td>Pria</td>
+            <td>3 hours 53 minutes</td>
+            <td>7 hours 23 minutes 0 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9045</td>
+            <td>ANDRIAN HARTANTO</td>
+            <td>Pria</td>
+            <td>3 hours 32 minutes</td>
+            <td>7 hours 23 minutes 0 seconds</td>
+            <td>Over COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9020</td>
+            <td>MUSTAQIM LUBIS</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9021</td>
+            <td>GUNAWAN UTOMO</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9026</td>
+            <td>CAHNIDI</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9038</td>
+            <td>HERRY SUWITO</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9030</td>
+            <td>REGNATA REVI FAYOLA SITOMPUL</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9003</td>
+            <td>AKBAR SIDDIQ</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9005</td>
+            <td>PANDIANGAN</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9007</td>
+            <td>ULUNG KOMALA</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9012</td>
+            <td>KOK SIONG</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9013</td>
+            <td>FENDI KURNIAWAN</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9031</td>
+            <td>GUSSEN TEODRIF SIAHAAN</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>9032</td>
+            <td>PURBOYO IMAM RAHAYU</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12" ng-if="params.event == '3'&&catRadioModel == '11K'">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Daftar Peserta
+					</div>
+					<div class="table-responsive">
+<table class="table table-striped b-t b-light">
+    <thead>
+        <tr class="tableizer-firstrow">
+            <th>Rank</th>
+            <th>BIB</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Duration</th>
+            <th>Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>036</td>
+            <td>SANTO GINTING</td>
+            <td>Pria</td>
+            <td>1 hours 32 minutes 44 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>7011</td>
+            <td>ADI ZULKARNAEN</td>
+            <td>Pria</td>
+            <td>1 hours 55 minutes 16 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>038</td>
+            <td>IDRIS SUSANTO</td>
+            <td>Pria</td>
+            <td>2 hours 1 minutes 42 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>7002</td>
+            <td>PARTOGIAN GULTOM</td>
+            <td>Pria</td>
+            <td>2 hours 18 minutes 47 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>040</td>
+            <td>ALEXANDER NICO PURBA</td>
+            <td>Pria</td>
+            <td>2 hours 22 minutes 29 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>7019</td>
+            <td>RAMLI NASUTION</td>
+            <td>Pria</td>
+            <td>2 hours 32 minutes 24 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>7043</td>
+            <td>FERRY JIMMY GINTING</td>
+            <td>Pria</td>
+            <td>2 hours 32 minutes 27 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>7024</td>
+            <td>JUPIANTO SEMBIRING</td>
+            <td>Pria</td>
+            <td>2 hours 34 minutes 30 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>7025</td>
+            <td>WELMAN PASARIBU</td>
+            <td>Pria</td>
+            <td>2 hours 35 minutes 27 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>7044</td>
+            <td>RIZAL MH TAMBUNAN</td>
+            <td>Pria</td>
+            <td>2 hours 35 minutes 44 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>7004</td>
+            <td>EDI HERIANTO HARAHAP</td>
+            <td>Pria</td>
+            <td>2 hours 36 minutes 37 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>7007</td>
+            <td>RIZKI CANDRA M</td>
+            <td>Pria</td>
+            <td>2 hours 36 minutes 44 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>7021</td>
+            <td>ALIF OEMRY</td>
+            <td>Pria</td>
+            <td>2 hours 42 minutes 18 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>035</td>
+            <td>PANCA SATYA</td>
+            <td>Pria</td>
+            <td>2 hours 43 minutes 11 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>7016</td>
+            <td>M DANDY KURNIAWAN</td>
+            <td>Pria</td>
+            <td>2 hours 44 minutes 44 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>7032</td>
+            <td>CHAN TUTY NURIANY</td>
+            <td>Wanita</td>
+            <td>2 hours 45 minutes 9 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>7029</td>
+            <td>FRISKA</td>
+            <td>Wanita</td>
+            <td>2 hours 49 minutes 13 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>7001</td>
+            <td>WIDHI PURBO NUGROHO</td>
+            <td>Pria</td>
+            <td>2 hours 55 minutes 57 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>7009</td>
+            <td>SANDY IRAWAN</td>
+            <td>Pria</td>
+            <td>2 hours 55 minutes 57 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>7036</td>
+            <td>IRSADA ARROISSI</td>
+            <td>Pria</td>
+            <td>2 hours 56 minutes 51 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>8001</td>
+            <td>LES ROBERTSON</td>
+            <td>Pria</td>
+            <td>2 hours 56 minutes 51 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>7010</td>
+            <td>RASYAD GHAZALI</td>
+            <td>Pria</td>
+            <td>2 hours 58 minutes 53 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>7013</td>
+            <td>A L D I</td>
+            <td>Pria</td>
+            <td>2 hours 59 minutes 0 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>7003</td>
+            <td>ARIANTO</td>
+            <td>Pria</td>
+            <td>2 hours 59 minutes 30 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td>7031</td>
+            <td>SUSI</td>
+            <td>Wanita</td>
+            <td>3 hours 0 minutes 0 seconds</td>
+            <td>FINISH</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7037</td>
+            <td>IKBALIANRI</td>
+            <td>Pria</td>
+            <td>3 hours 0 minutes 6 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7020</td>
+            <td>ARSYAD NST</td>
+            <td>Pria</td>
+            <td>3 hours 6 minutes 0 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7005</td>
+            <td>NYAI PRIMA AGITA</td>
+            <td>Wanita</td>
+            <td>3 hours 17 minutes 2 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7012</td>
+            <td>JOI CHALVIN GINTING</td>
+            <td>Pria</td>
+            <td>3 hours 19 minutes 19 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7022</td>
+            <td>ARLISA RAKHMADANI</td>
+            <td>Wanita</td>
+            <td>3 hours 20 minutes 27 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7023</td>
+            <td>GUNAWAN HERIJON LIMBONG</td>
+            <td>Pria</td>
+            <td>3 hours 25 minutes 58 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7040</td>
+            <td>DAVID</td>
+            <td>Pria</td>
+            <td>3 hours 27 minutes 52 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7039</td>
+            <td>NOVA SARAH</td>
+            <td>Wanita</td>
+            <td>3 hours 50 minutes 55 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7041</td>
+            <td>GHUFRAN FIRMADI</td>
+            <td>Pria</td>
+            <td>4 hours 3 minutes 33 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7006</td>
+            <td>IMRAN RAMA</td>
+            <td>Pria</td>
+            <td>4 hours 7 minutes 18 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7008</td>
+            <td>RANDY NUR ARWINAH YANUARDI</td>
+            <td>Pria</td>
+            <td>4 hours 7 minutes 18 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7018</td>
+            <td>ADE NURLELA</td>
+            <td>Wanita</td>
+            <td>4 hours 21 minutes 27 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7015</td>
+            <td>INGRID GLORIA</td>
+            <td>Wanita</td>
+            <td>4 hours 32 minutes 25 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7048</td>
+            <td>RUSCAN COACA</td>
+            <td>Pria</td>
+            <td>4 hours 47 minutes 0 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7046</td>
+            <td>CORINA ANGGELIA</td>
+            <td>Wanita</td>
+            <td>4 hours 47 minutes 20 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7047</td>
+            <td>EVIE ANGGELIA</td>
+            <td>Wanita</td>
+            <td>4 hours 47 minutes 20 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7030</td>
+            <td>JULIA</td>
+            <td>Wanita</td>
+            <td>6 hours 4 minutes 0 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7033</td>
+            <td>VALENSIA</td>
+            <td>Wanita</td>
+            <td>6 hours 4 minutes 0 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7034</td>
+            <td>JUHARNI</td>
+            <td>Wanita</td>
+            <td>6 hours 4 minutes 0 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7038</td>
+            <td>HUBERTH TARIGAN</td>
+            <td>Pria</td>
+            <td>6 hours 4 minutes 0 seconds</td>
+            <td>OVER COT</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7017</td>
+            <td>DENIS HIDJAJA</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7026</td>
+            <td>PRETTY SIHITE</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7027</td>
+            <td>WILLIAM</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7028</td>
+            <td>ZULIANSYAH PUTRA BATUBARA</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7035</td>
+            <td>SONIA NATHALIN SIMATUPANG</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7042</td>
+            <td>DIDI WAHYUDI</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7045</td>
+            <td>SWEETY</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7049</td>
+            <td>BERNAD SIMANJUNTAK</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>7050</td>
+            <td>RIZKI FADILLA</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>037</td>
+            <td>ADZAR TUAH</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>039</td>
+            <td>ADRIAN</td>
+            <td>Pria</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>018</td>
+            <td>FLORENTINA</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>019</td>
+            <td>ELVI AVRIANI</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>020</td>
+            <td>SANIA</td>
+            <td>Wanita</td>
+            <td>&nbsp;</td>
+            <td>DNS</td>
+        </tr>
+    </tbody>
+</table>
+					</div>
+				</div>
+			</div>
+					<div class="table-responsive">
+			<div class="col-md-12" ng-if="params.event == '4'&&catRadioModel == '100K'">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Daftar Peserta
+					</div>
+					<div class="table-responsive">
+<table class="table table-striped b-t b-light">
+    <thead>
+        <tr class="tableizer-firstrow">
+            <th>NO</th>
+            <th>BIB</th>
+            <th>NAMA</th>
+            <th>WAKTU</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4">PUTRI</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>3028</td>
+            <td>Ina Budiyarni</td>
+            <td>16:16:57</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>3012</td>
+            <td>Siti Maemunah</td>
+            <td>17:22:25</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3014</td>
+            <td>Novita Wulandari</td>
+            <td>18:41:25</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>3016</td>
+            <td>Kristine Sihotang</td>
+            <td>19:27:24</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>3027</td>
+            <td>Sekarsari Suyono</td>
+            <td>20:00:04</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>3020</td>
+            <td>Haryati Pratiwi Halim</td>
+            <td>DNF</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr class="tableizer-firstrow">
+            <th colspan="4">PUTRA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>3022</td>
+            <td>Oktavianus Quaalsalmy</td>
+            <td>11:37:50</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>3030</td>
+            <td>Feri Junaidi</td>
+            <td>12:15:24</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3001</td>
+            <td>William Lesmana</td>
+            <td>14:06:05</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>3017</td>
+            <td>Leo Kharismanta Sitepu</td>
+            <td>16:41:40</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>3011</td>
+            <td>Agustinus Sucipto</td>
+            <td>16:43:07</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>3021</td>
+            <td>Arijanto Basuki Johanes</td>
+            <td>17:37:33</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>3025</td>
+            <td>Nicky Hogan</td>
+            <td>17:59:49</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>3004</td>
+            <td>George Surjopurnomo</td>
+            <td>18:24:18</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>3023</td>
+            <td>Kaherul Syah</td>
+            <td>18:37:38</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>3033</td>
+            <td>Muslim Prabowo</td>
+            <td>19:44:41</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>3019</td>
+            <td>Ahmad Rais</td>
+            <td>19:47:06</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>3015</td>
+            <td>Andriana</td>
+            <td>19:53:46</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>3026</td>
+            <td>Fredy</td>
+            <td>20:00:00</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>3007</td>
+            <td>Rahmat Plastyono</td>
+            <td>20:00:00</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>3032</td>
+            <td>Gatot Sudariyono</td>
+            <td>21:21:04</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>3029</td>
+            <td>Iwan</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>3010</td>
+            <td>Roy M.Wijaya</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>3013</td>
+            <td>Eko Ryzananto</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>3008</td>
+            <td>Ahmad Cofifin</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>3009</td>
+            <td>Alexander Bobby Milano</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>3024</td>
+            <td>Aldrin</td>
+            <td>DNF</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>3031</td>
+            <td>Andrew CM</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>3003</td>
+            <td>Haris Anwar</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>3005</td>
+            <td>Syulaiman</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td>3006</td>
+            <td>Chrestofel Uneputty</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td>3018</td>
+            <td>Hestu Perdana</td>
+            <td>DNS</td>
+        </tr>
+    </tbody>
+</table>					
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12" ng-if="params.event == '4'&&catRadioModel == '320K'">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Daftar Peserta
+					</div>
+					<div class="table-responsive">
+<table class="table table-striped b-t b-light">
+    <thead>
+        <tr>
+            <th>COT</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>COT9H</th>
+            <th>&nbsp;</th>
+            <th>COT18H</th>
+            <th>&nbsp;</th>
+            <th>COT27H</th>
+            <th>&nbsp;</th>
+            <th>COT36H</th>
+            <th>&nbsp;</th>
+            <th>COT45H</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>COT72H</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>Start</td>
+            <td>Km 40</td>
+            <td>&nbsp;</td>
+            <td>Km 80</td>
+            <td>&nbsp;</td>
+            <td>Km 120</td>
+            <td>&nbsp;</td>
+            <td>Km 160</td>
+            <td>&nbsp;</td>
+            <td>Km 200</td>
+            <td>&nbsp;</td>
+            <td>Km 240</td>
+            <td>&nbsp;</td>
+            <td>Km 280</td>
+            <td>&nbsp;</td>
+            <td>Km 300</td>
+            <td>&nbsp;</td>
+            <td>Finish</td>
+            <td>&nbsp;</td>
+            <td>Remark</td>
+        </tr>
+        <tr>
+            <th>Bib No.</th>
+            <th>Name</th>
+            <th>&nbsp;</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>Vernando Hutagaol</td>
+            <td>15:44:00</td>
+            <td>21:00:00</td>
+            <td>5:16:00</td>
+            <td>4:14:00</td>
+            <td>12:30:00</td>
+            <td>15:14:00</td>
+            <td>23:30:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 145</td>
+        </tr>
+        <tr>
+            <td>1002</td>
+            <td>Surahman Cadaka</td>
+            <td>15:44:00</td>
+            <td>22:28:00</td>
+            <td>6:44:00</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ</td>
+            <td>-</td>
+            <td>DISQ Km 70</td>
+        </tr>
+        <tr>
+            <td>1003</td>
+            <td>Adlan Djohan - Bib. Mak Del</td>
+            <td>15:44:00</td>
+            <td>22:22:00</td>
+            <td>6:38:00</td>
+            <td>8:01:00</td>
+            <td>16:17:00</td>
+            <td>18:12:00</td>
+            <td>26:28:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 130</td>
+        </tr>
+        <tr>
+            <td>1004</td>
+            <td>William</td>
+            <td>15:44:00</td>
+            <td>21:00:00</td>
+            <td>5:16:00</td>
+            <td>4:01:00</td>
+            <td>12:17:00</td>
+            <td>13:49:00</td>
+            <td>22:05:00</td>
+            <td>2:20:00</td>
+            <td>34:36:00</td>
+            <td>12:09:00</td>
+            <td>44:25:00</td>
+            <td>23:48:00</td>
+            <td>56:04:00</td>
+            <td>9:02:00</td>
+            <td>65:18:00</td>
+            <td>14:08:00</td>
+            <td>70:24:00</td>
+            <td>19:15:00</td>
+            <td>75:31:00</td>
+            <td>DNF Km 301</td>
+        </tr>
+        <tr>
+            <td>1005</td>
+            <td>Pramonosidi Wijanarko</td>
+            <td>15:44:00</td>
+            <td>20:21:00</td>
+            <td>4:37:00</td>
+            <td>3:26:00</td>
+            <td>11:42:00</td>
+            <td>12:00:00</td>
+            <td>20:16:00</td>
+            <td>23:13:00</td>
+            <td>31:29:00</td>
+            <td>9:23:00</td>
+            <td>41:39:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 230</td>
+        </tr>
+        <tr>
+            <td>1006</td>
+            <td>Eni Rosita</td>
+            <td>15:44:00</td>
+            <td>20:30:00</td>
+            <td>4:46:00</td>
+            <td>2:52:00</td>
+            <td>11:08:00</td>
+            <td>10:20:00</td>
+            <td>18:36:00</td>
+            <td>23:13:00</td>
+            <td>31:29:00</td>
+            <td>10:50:00</td>
+            <td>43:06:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 235</td>
+        </tr>
+        <tr>
+            <td>1007</td>
+            <td>Matheos Berhitu</td>
+            <td>15:44:00</td>
+            <td>19:49:00</td>
+            <td>4:05:00</td>
+            <td>1:38:00</td>
+            <td>9:54:00</td>
+            <td>8:30:00</td>
+            <td>16:46:00</td>
+            <td>20:28:00</td>
+            <td>28:44:00</td>
+            <td>9:20:00</td>
+            <td>41:36:00</td>
+            <td>20:18:00</td>
+            <td>52:34:00</td>
+            <td>6:58:00</td>
+            <td>63:14:00</td>
+            <td>11:23:00</td>
+            <td>67:39:00</td>
+            <td>14:38:00</td>
+            <td>70:54:00</td>
+            <td>Finisher</td>
+        </tr>
+        <tr>
+            <td>1008</td>
+            <td>Abdul Aziz Dermawan</td>
+            <td>15:44:00</td>
+            <td>19:43:00</td>
+            <td>3:59:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 70</td>
+        </tr>
+        <tr>
+            <td>1009</td>
+            <td>Andre Mamesah</td>
+            <td>15:44:00</td>
+            <td>20:36:00</td>
+            <td>4:52:00</td>
+            <td>4:44:00</td>
+            <td>13:00:00</td>
+            <td>16:41:00</td>
+            <td>24:57:00</td>
+            <td>3:17:00</td>
+            <td>35:33:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 170</td>
+        </tr>
+        <tr>
+            <td>1010</td>
+            <td>Lily</td>
+            <td>15:44:00</td>
+            <td>20:52:00</td>
+            <td>5:08:00</td>
+            <td>4:37:00</td>
+            <td>12:53:00</td>
+            <td>15:14:00</td>
+            <td>23:30:00</td>
+            <td>2:41:00</td>
+            <td>34:57:00</td>
+            <td>12:23:00</td>
+            <td>44:39:00</td>
+            <td>23:45:00</td>
+            <td>56:01:00</td>
+            <td>8:54:00</td>
+            <td>65:10:00</td>
+            <td>14:08:00</td>
+            <td>70:24:00</td>
+            <td>21:26:00</td>
+            <td>77:42:00</td>
+            <td>DNF Km 300</td>
+        </tr>
+        <tr>
+            <td>2001</td>
+            <td>Yeo Joon Kiat</td>
+            <td>DNS</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+            <td>-</td>
+            <td>DNS</td>
+        </tr>
+        <tr>
+            <td>2002</td>
+            <td>Alaistair MacDonald</td>
+            <td>15:44:00</td>
+            <td>21:03:00</td>
+            <td>5:19:00</td>
+            <td>5:11:00</td>
+            <td>13:27:00</td>
+            <td>13:38:00</td>
+            <td>21:54:00</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF</td>
+            <td>-</td>
+            <td>DNF Km 135</td>
+        </tr>
+    </tbody>
+</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12" ng-if="params.event != '4'&&params.event != '3'">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Daftar Peserta
+					</div>
+					<div class="table-responsive">
+						<table class="table table-striped b-t b-light">
+							<thead>
+								<tr>
+									<th rowspan="2">No BIB</th>
+									<th rowspan="2">Nama</th>
+									<th rowspan="2">Jarak</th>
+									<th rowspan="2">Kategori</th>
+									<th rowspan="2">Catatan Waktu</th>
+									<th rowspan="2">Status</th>
+									<th colspan="3">Posisi</th>
+								</tr>
+								<tr>
+									<th>Keseluruhan</th>
+									<th>Kategori</th>
+									<th>Gender</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="result in results.data">
+									<td>{{result.rcrsBIB}}</td>
+									<td class="text-left">{{result.rcrsName}}</td>
+									<td>{{result.rcrsEventDescription}}</td>
+									<td>{{result.rcrsRaceCategory}}</td>
+									<td>{{result.rcrsFinishTime}}</td>
+									<td>{{result.rcrsFinishStatus}}</td>
+									<td>{{result.rcrsOverallPosition}}</td>
+									<td>{{result.rcrsCategoryPosition}}</td>
+									<td>{{result.rcrsGenderPosition}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!--nav>
+						<ul class="pager">
+							<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+							<li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+						</ul>
+					</nav-->
+				</div>
+				<p>Halaman {{params.pageNumber}} dari {{totalPage}}</p>	
+				<div class="btn-group" role="group">
+					<button type="button" ng-disabled="params.pageNumber == 1" class="btn btn-default" ng-click="load(params.pageNumber - 1)"><< Sebelumnya</button>
+					<button type="button" ng-disabled="params.pageNumber == totalPage" class="btn btn-default" ng-click="load(params.pageNumber + 1)">Selanjutnya >></button>
+				</div>					
+			</div>
+		</div>
+	</div>
+</section>

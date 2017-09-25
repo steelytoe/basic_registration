@@ -1,0 +1,55 @@
+<div ng-show="participants">
+	<div class="row findParticipant">
+		<div class="col-md-4">
+			<div class="input-group">
+				<input type="text" class="form-control" ng-disabled="data.transaction.discount_amount" placeholder="Cari Peserta" ng-model="searchStr" ng-change="searchParticipant(searchStr)">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" ng-disabled="data.transaction.discount_amount" ng-click="searchParticipant(searchStr)">Find</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="row">      	
+		<div class="col-md-12">
+			<uib-tabset active="active">
+				<uib-tab index="0" heading="All" select="showAll()"></uib-tab>
+				<uib-tab ng-repeat="(key, category) in events[params.filter.evpaEvnhId].categories" index="{{key}}" heading="{{category.evncDesc}}" select="selected()"></uib-tab>
+			</uib-tabset>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Participant List
+					<strong class="pull-right">Total: {{participants.status.totalRecords}}</strong>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-striped b-t b-light">
+						<thead>
+							<tr>
+								<th>BIB Number</th>
+								<th>Name</th>
+								<th>Category</th>
+								<th>Nationality</th>
+								<th>Gender</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="participant in participants.data">
+								<td>{{participant.evpaBIBNo}}</td>
+								<td class="text-left">{{participant.evpaName}}</td>
+								<td>{{toObject(participants.linked.evpaEvncId)[participant.links.evpaEvncId].evncDesc}}</td>
+								<td>{{countriesObj[participantsNationality[participant.evpaId]]}}</td>
+								<td ng-if="participant.evpaGender == 1">Male</td>
+								<td ng-if="participant.evpaGender == 2">Female</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<p>Halaman {{params.pageNumber}} dari {{totalPage}}</p>
+			<div class="btn-group" role="group">
+				<button type="button" ng-disabled="params.pageNumber == 1" class="btn btn-default" ng-click="load(params.pageNumber - 1)"><< Previous</button>
+				<button type="button" ng-disabled="params.pageNumber == totalPage" class="btn btn-default" ng-click="load(params.pageNumber + 1)">Next >></button>
+			</div>					
+		</div>
+	</div>
+</div>

@@ -1,0 +1,120 @@
+<div class="row additionalSelector" ng-hide="eventSelector.evnhId">
+	<div ng-repeat="event in events" class="col-sm-4 col-md-4" ng-model="eventSelector.evnhId" uib-btn-radio="event.evnhId" ng-disabled="event.evnhId == 6">
+		<div class="panel panel-default" ng-class="{'panel-success':eventSelector.evnhId == event.evnhId}">
+			<div class="panel-heading">{{event.heading}}</div>
+			<div class="panel-body">
+				<h4 ng-show="event.evnhName">{{event.evnhName}}</h4>
+				<p>{{event.description}}</p>
+			</div>
+			<div class="panelButton">
+				<a href class="btn btn-default" disabled ng-show="event.evnhId == 6">Pendaftaran Ditutup</a>
+				<a href class="btn btn-default" ng-show="event.evnhId != 6">Pilih Kategori</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" id="participantForm" ng-show="eventSelector.evnhId">      
+	<div class="col-sm-12">	
+		<div id="topButton">
+			<div class="btn-group categoryChoice">
+				<label class="btn btn-default btn-md" ng-model="flag.community" uib-btn-radio="false">Pribadi</label>
+				<label class="btn btn-default btn-md" ng-model="flag.community" uib-btn-radio="true">Komunitas</label>
+			</div>
+			<div class="btn-group pull-right">
+				<label class="btn btn-info btn-md" ng-model="flag.newReg" uib-btn-radio="true">{{languages.new_reg}}</label>
+				<label class="btn btn-info btn-md" ng-model="flag.newReg" uib-btn-radio="false">{{languages.check_status}}</label>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<form role="form" ng-submit="goToInvoice()" ng-show="flag.newReg === false">
+			<p>{{find_pref}}</p>
+			<div class="form-group">
+				<label for="invoiceNo">{{languages.fields.regcode}}:</label>
+				<input type="text" class="form-control" id="invoiceNo" ng-model="invoiceNo">
+			</div>
+			<div class="btn-group">
+				<p>
+					<button ng-disabled="sending" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Find Data</button>
+				</p>
+			</div>
+		</form>
+		<form role="form" ng-submit="sendData()" name="regForm" ng-show="!transactionSuccess&&flag.newReg">
+			<div class="form-group" ng-show="flag.community">	
+				<label for="comuName">{{languages.fields.comname}}:</label>
+				<input type="text" class="form-control" id="comuName" ng-model="form.community.comuName" ng-keypress="keypressed($event, form.community.comuName)">
+			</div>
+			<uib-tabset>
+				<uib-tab ng-repeat="(pKey, participant) in form.participants" active="tabs[pKey].active">
+					<uib-tab-heading>
+						{{languages.participant}} {{$index+1}} <span ng-show="regForm[pKey].$invalid" class="badge badge-danger">error</span>
+						<button ng-disabled="groupReg" ng-if="pKey !== 0" type="button" class="btn-xs btn-default" ng-click="remove(pKey)" >
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						</button>
+					</uib-tab-heading>
+					<ng-form name="{{pKey}}">
+						<div class="form-group" ng-repeat="field in fields" ng-class="{'has-error': regForm[pKey][field.name].$invalid}">
+							<label for="{{field.name}}" ng-if="field.type !== 'checkbox'">{{field.title}} :</label>
+							<input ng-change="resetField(regForm[pKey][field.name])" ng-if="field.type !== 'option'&&field.type !== 'date'&&field.type !== 'email'&&field.type !== 'checkbox'" type="{{field.type}}" class="form-control" id="{{field.name}}" name="{{field.name}}" ng-model="participant[field.name]">
+							<input ng-change="resetField(regForm[pKey][field.name])" ng-if="field.type == 'checkbox'" type="{{field.type}}" id="{{field.name}}" name="{{field.name}}" ng-model="participant[field.name]" ng-true-value="'1'", ng-false-value="'0'">
+							<input ng-change="resetField(regForm[pKey][field.name])" ng-if="field.type === 'email'" name="{{field.name}}" type="{{field.type}}" class="form-control" id="{{field.name}}" ng-model="participant[field.name]">
+							<select ng-change="resetField(regForm[pKey][field.name])" class="form-control" ng-if="field.type === 'option'" name="{{field.name}}" id="{{field.name}}" ng-model="participant[field.name]" ng-disabled="field.disabled">
+								<option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+							</select>
+							<div class="input-group" ng-if="field.type === 'date'">
+								<input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" name="{{field.name}}" id="{{field.name}}" ng-model="participant[field.name]" is-open="datepickers.isopen[field.name]" datepicker-options="datepickers.option" ng-change="datepickers.changed(participant, field.name, regForm[pKey][field.name])" close-text="Close"/>
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="datepickers.open($event, field.name)"><i class="glyphicon glyphicon-calendar"></i></button>
+								</span>
+							</div>
+							<label for="{{field.name}}" ng-if="field.type == 'checkbox'">{{field.title}}</label>	
+							<div class="clearfix"></div>
+							<span class="help-block" ng-show="regForm[pKey][field.name].$invalid">{{regForm[pKey][field.name].$error.message}}</span>
+						</div>
+						<!--div class="form-group" ng-repeat="(i, additionalItem) in additionalItems" ng-class="{'has-error': regForm[pKey][field.name].$invalid}">
+							<pre>{{additionalItems[i].selected}}</pre>
+							<label for="accomodationOption">{{additionalItem.title}} :</label>
+							<div class="form-inline">
+								<select ng-model="additionalItems[i].selected.item" class="form-control">
+									<option ng-repeat="option in additionalItem.options" value="{{option.value}}">{{option.title}}</option>
+								</select>
+								<div class="input-group" ng-repeat="attribute in additionalItem.attributes">
+									<div ng-if="attribute.type == 'datepicker'">
+										<input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" name="{{field.name}}" id="{{field.name}}" ng-model="additionalItems[i].selected.date" is-open="datepickers.isopen[additionalItem.name]" datepicker-options="datepickers.option" ng-change="datepickers.changed(additionalItems[i])" close-text="Close"/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="datepickers.open($event, additionalItem.name)"><i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+									</div>
+									<input ng-if="attribute.type == 'input'" type="text" class="form-control" placeholder="{{attribute.title}}" ng-model="additionalItems[i].selected[attribute.name]"/>
+								</div>
+							</div>
+						</div-->
+					</ng-form>
+				</uib-tab>
+			</uib-tabset>
+			<!--p>
+				<h3 ng-show="totalAmount != 0">{{languages.amounttopay}}: {{totalAmount|currency:'Rp.'}}</h3>
+			</p-->
+			<h2>{{message}}</h2>
+			<ul ng-if="messages&&false">
+				<li ng-repeat="message in messages">{{message}}</li>
+			</ul>
+			<div>
+				<p>
+					<button ng-if="debug" ng-click="fillTestData()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Fill Data</button>
+					<button ng-disabled="groupReg" type="button" class="btn btn-info" ng-click="addParticipant()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{languages.addparticipant}}</button>
+					<button ng-disabled="sending" type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{languages.regnow}}</button>
+				</p>
+			</div>
+		</form>
+		<div ng-show="transactionSuccess">
+			<h1><strong>{{languages.successregister}}</strong></h1>
+			<h3><strong>{{languages.yourcode}} : {{paymentData.refId}}, {{languages.codekeepadvice}}</strong></h3>
+			<p>{{languages.dopayadvice}} {{paymentData.total_amount | currency : 'Rp. ' : 0}}</p>
+			<p><strong>{{languages.amounttopay}} : {{paymentData.total_amount | currency : 'Rp. ' : 0}}</strong></p>
+			<p>{{languages.doperadvice}}</p>
+			<h3><strong>{{languages.thanks}}</strong></h3>
+			<p> </p>
+		</div>
+	</div>
+</div>

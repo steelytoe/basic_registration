@@ -1,0 +1,18 @@
+#steelytoe-registration {padding: 0 15px; clear: both;}
+#participantForm form button {width: auto;}
+.tab-content {padding-top: 15px;}
+#topButton {margin-bottom: 15px;}
+.additionalSelector .panel {cursor: pointer;}
+#paymentInfo {margin-top: 15px;}
+#newRegistration {margin-bottom: 15px;}
+.m-t {margin-top: 15px;}
+.panelButton {text-align: center; padding: 0 15px 15px 15px;}
+.findParticipant {margin-bottom: 15px;}
+[disabled] .panel {background: #aaaaaa;}
+.creditFooter {text-align: right; margin-top: 20px;}
+
+#steelytoe-registration ul li:before {background: none;}
+#steelytoe-registration ul {margin:0;}
+#steelytoe-registration ul li {margin:0;}
+
+#steelytoe-registration .btn-primary.active {background-color:#FF5722;border-color:#F44336;}

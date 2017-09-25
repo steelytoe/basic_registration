@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h2>Selamat Datang Di {{evnhName}}</h2>
+	<p>Halo {{evpaName}}, :</p>
+	<p>Terima kasih nama anda telah terdaftar pada {{evnhName}}</p>
+	<p>Kode pendaftaran anda adalah {{refId}}</p>
+	<p>Anda akan mendapatkan email selanjutnya mengenai cara pembayaran sesuai dengan metode pembayaran yang anda pilih</p>
+	<p>Rincian pendaftaran anda adalah :</p>
+	<table>
+		<tr>
+			<th>Nama Peserta</th>
+			<th>Kategori</th>
+		</tr>
+		{% for evpa in evpa_list %} 
+		<tr>
+			<td>{{evpa.evpaName}}</td>
+			<td>{{evpa.EventCategory.evncDesc}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<p><strong>Anda dapat sewaktu - waktu mengakses halaman berikut <a href="http://www.komandorun.com/registration/#/invoice/{{refId}}" target="_blank">http://www.komandorun.com/registration/#/invoice/{{refId}} untuk memeriksa status pendaftaran ataupun melakukan pembayaran.</a></strong></p>
+	<p>Untuk informasi ataupun bantuan silahkan menghubungi :</p>
+	<h4>0812 9020 0100/0812 8805 1425</h4>
+	<p>Terima Kasih</p>
+</body>
+</html>

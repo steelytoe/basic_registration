@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Basic Registration Page</title>
+	<link rel="stylesheet" media="all" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" media="all" href="styles/main.css"/>
+	<!--script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script-->
+	<script src="scripts/angular-compilation.js"></script>
+	<script src="scripts/main.js"></script>
+</head>
+<body>
+	<header class="navbar navbar-default navbar-inner">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="#top" role="button" class="navbar-brand">
+					Steelytoe
+					<span ng-hide="live"> !!! DEBUG MODE !!!</span>
+				</a>
+			</div>
+			<!--ul class="nav navbar-nav">
+				<li><a href>Pendaftaran</a></li>
+				<li><a href>Daftar Peserta</a></li>
+			</ul-->
+		</div>
+	</header>
+	<div class="container">
+		<div class="wrapper-sm">
+			<!-- Append steelytoe registration form -->
+			<!--div id="steelytoe-registration" ng-app="app" ng-controller="mainCtrl" ng-init="default=13"-->
+			<div id="steelytoe-registration" ng-app="app" ng-controller="mainCtrl">
+				<div ng-view></div>
+			</div>
+			<!-- //Append steelytoe registration form -->
+		</div>
+	</div>
+</body>
+</html>
